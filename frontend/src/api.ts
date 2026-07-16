@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://leadflowai-6fex.onrender.com/api',
   headers: { 'Content-Type': 'application/json' },
 });
 
