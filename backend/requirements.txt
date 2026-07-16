@@ -10,7 +10,6 @@ aiosqlite==0.20.0
 langgraph==0.0.50
 langchain==0.1.0
 langchain-openai==0.0.5
-pydantic==2.5.2
 cryptography==41.0.7
 python-multipart==0.0.6
 pytest==7.4.3
