@@ -58,6 +58,9 @@ export interface LeadDetailResponse extends LeadResponse {
   edited_email_subject: string | null;
   edited_email_body: string | null;
   approval_comment: string | null;
+
+  // Fix for Vercel build
+  email_status: string | null;
 }
 
 export interface ProcessResponse {
@@ -92,6 +95,30 @@ export interface ApprovalRequest {
   comment?: string;
   edited_email_subject?: string;
   edited_email_body?: string;
+}
+
+export interface GovernanceStats {
+  total_audit_events: number;
+  approval_requests: number;
+  approved_emails: number;
+  rejected_emails: number;
+  sent_emails: number;
+  governance_violations: number;
+  injection_attempts_blocked: number;
+  fairness_tests_passed: number;
+  fairness_tests_failed: number;
+  total_fairness_tests: number;
+  total_injection_tests: number;
+}
+
+export interface EvaluationResult {
+  test_name: string;
+  status: string;
+  details: string;
+  score: number | null;
+  classification: string | null;
+  expected: string;
+  actual: string;
 }
 
 // Lead API
@@ -133,29 +160,5 @@ export const auditApi = {
   list: (params?: { skip?: number; limit?: number; event_type?: string }) =>
     api.get('/leads/audit/logs', { params }),
 };
-
-export interface GovernanceStats {
-  total_audit_events: number;
-  approval_requests: number;
-  approved_emails: number;
-  rejected_emails: number;
-  sent_emails: number;
-  governance_violations: number;
-  injection_attempts_blocked: number;
-  fairness_tests_passed: number;
-  fairness_tests_failed: number;
-  total_fairness_tests: number;
-  total_injection_tests: number;
-}
-
-export interface EvaluationResult {
-  test_name: string;
-  status: string;
-  details: string;
-  score: number | null;
-  classification: string | null;
-  expected: string;
-  actual: string;
-}
 
 export default api;
